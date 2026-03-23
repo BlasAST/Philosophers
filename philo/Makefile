@@ -1,0 +1,33 @@
+NAME = philo
+CC = cc
+# CFLAGS = -Wall -Werror -Wextra
+
+SRC = main.c \
+	utils_1.c \
+	init_data.c \
+	threads.c \
+	mutex.c \
+	monitoring.c \
+	cleanup.c
+
+OBJ_SRC = $(SRC:.c=.o)
+
+all: $(NAME)
+
+$(NAME): $(OBJ_SRC)
+	$(CC) $(CFLAGS) $(OBJ_SRC) -o $(NAME)
+
+%.o : %.c
+	cc $(CFLAGS) -c $< -o $@
+
+clean:
+	rm -rf $(OBJ_SRC)
+
+
+fclean: clean
+	rm -rf $(NAME)
+
+re: fclean all
+
+
+.PHONY: all clean fclean re

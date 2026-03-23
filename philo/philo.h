@@ -1,0 +1,92 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/20 11:48:33 by blas              #+#    #+#             */
+/*   Updated: 2026/03/23 13:55:11 by blas             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PHILO_H
+# define PHILO_H
+# include <stdio.h>
+# include <pthread.h>
+# include <stdlib.h>
+# include <unistd.h>
+
+
+//RESTRICT
+/*
+	- Global vars
+*/
+typedef struct s_philo
+{
+	int						id;
+	pthread_t				thread;
+	long long				last_meal;
+	int						meals_eaten;
+	pthread_mutex_t			*fl;
+	pthread_mutex_t			*fr;
+	t_data					*data;
+}	t_philo;
+//Los philos no hablan entre ellos por lo que no saben si otro muere
+//DEBEN DE INTENTAR NO MORIR
+
+//Cuentan con identificador de forma que el ultimo
+//terminará estando con el primero
+
+typedef struct s_table
+{
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	prints;
+	pthread_mutex_t	death;
+	int				someone_dead;
+}	t_table;
+
+typedef struct s_data
+{
+	int		number_philos;
+	int		time_to_die;
+	int		time_to_eat;
+	int		time_to_sleep;
+	int		must_eat;
+	t_table	tab;
+	t_philo	*philos;
+}	t_data;
+
+int		ft_strlen(char *str);
+void	ft_print_error(char *str);
+
+////Development
+
+//Turnos de comer, pensar, dormir
+
+
+// Get_forks
+
+
+
+// Pattern philo -> comer -> dormir -> pensar
+
+
+//Check dead
+
+
+// Save data params main
+void	get_data(t_data *dt, char **args, int argn);
+int		ft_atoi(char *args);
+
+
+
+// Notify changes philos - correctos y en orden
+
+
+// Tiempo limite de notificación y momento de muerte
+
+
+//BONUS
+
+#endif
