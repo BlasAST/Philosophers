@@ -6,13 +6,13 @@
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 11:46:28 by blas              #+#    #+#             */
-/*   Updated: 2026/03/23 13:57:17 by blas             ###   ########.fr       */
+/*   Updated: 2026/03/24 11:26:04 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-/* int	main(int argn, char **args)
+int	main(int argn, char **args)
 {
 	t_data	dt;
 
@@ -23,11 +23,10 @@
 		return (1);
 	}
 	get_data(&dt, args + 1, argn);
-	
 	return (0);
-} */
+}
 
-void	*print_hola(void *arg)
+/* void	*print_hola(void *arg)
 {
 	int	i;
 	int	id;
@@ -63,4 +62,4 @@ int	main(void)
 	pthread_join(hilo2, NULL);
 	printf("Hilos finalizados\n");
 	return (0);
-}
+} */
