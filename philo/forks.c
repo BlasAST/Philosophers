@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   monitoring.c                                       :+:      :+:    :+:   */
+/*   forks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/25 11:10:52 by blas              #+#    #+#             */
-/*   Updated: 2026/03/25 11:13:36 by blas             ###   ########.fr       */
+/*   Created: 2026/03/25 11:25:14 by blas              #+#    #+#             */
+/*   Updated: 2026/03/25 11:42:17 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	monitor(t_data * dt)
+void	get_forks(t_philo *ph)
 {
-	int	i;
-
-	while (1)
-	{
-		i = 0;
-		while (i < dt->number_philos)
-		{
-			i++;
-		}
-	}
+	pthread_mutex_lock(ph->fl);
+	pthread_mutex_lock(ph->fr);
 }

@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   monitoring.c                                       :+:      :+:    :+:   */
+/*   checkers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/25 11:10:52 by blas              #+#    #+#             */
-/*   Updated: 2026/03/25 11:13:36 by blas             ###   ########.fr       */
+/*   Created: 2026/03/25 11:07:09 by blas              #+#    #+#             */
+/*   Updated: 2026/03/25 11:42:10 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	monitor(t_data * dt)
+int	unlock_forks(t_philo *ph)
 {
-	int	i;
+	pthread_mutex_lock(ph->fl);
+	pthread_mutex_lock(ph->fr);
+}
 
-	while (1)
-	{
-		i = 0;
-		while (i < dt->number_philos)
-		{
-			i++;
-		}
-	}
+int	check_dead(t_philo *ph)
+{
+	
 }

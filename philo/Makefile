@@ -5,10 +5,10 @@ CC = cc
 SRC = main.c \
 	utils_1.c \
 	init_data.c \
-	threads.c \
-	mutex.c \
 	monitoring.c \
-	cleanup.c
+	frees.c \
+	checkers.c \
+	forks.c
 
 OBJ_SRC = $(SRC:.c=.o)
 

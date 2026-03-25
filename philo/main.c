@@ -6,11 +6,45 @@
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 11:46:28 by blas              #+#    #+#             */
-/*   Updated: 2026/03/24 11:26:04 by blas             ###   ########.fr       */
+/*   Updated: 2026/03/25 11:43:25 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	*routine(void *arg)
+{
+	t_philo	*ph;
+
+	ph = (t_philo *) arg;
+	while (1)
+	{
+		if (check_dead(ph->data->tab.someone_dead))
+			break;
+		
+		/*
+		Pensar
+		Coger tenedor left
+		Coger tenedor right
+		Comer
+		Soltar tenedores
+		Dormir
+		*/
+	}
+	return (NULL);
+}
+
+void	await_pthreads(t_data *dt)
+{
+	int	i;
+
+	i = 0;
+	while (i < dt->number_philos)
+	{
+		pthread_detach(dt->philos[i].thread);
+		i++;
+	}
+}
 
 int	main(int argn, char **args)
 {
@@ -23,43 +57,7 @@ int	main(int argn, char **args)
 		return (1);
 	}
 	get_data(&dt, args + 1, argn);
+	await_pthreads(&dt);
+	free_all(&dt);
 	return (0);
 }
-
-/* void	*print_hola(void *arg)
-{
-	int	i;
-	int	id;
-
-	i = 0;
-	id = *(int *)arg;
-	while (i < 10)
-	{
-		printf("Hola desde hilo %d, iteración %d\n", id, i);
-		usleep(1000);
-		i++;
-	}
-	return (NULL);
-}
-
-int	main(void)
-{
-	pthread_t	hilo1;
-	pthread_t	hilo2;
-	int			id1;
-	int			id2;
-	int			err;
-
-	id1 = 1;
-	id2 = 2;
-	err = pthread_create(&hilo1, NULL, print_hola, &id1);
-	if (err != 0)
-		return (1);
-	err = pthread_create(&hilo2, NULL, print_hola, &id2);
-	if (err != 0)
-		return (1);
-	pthread_join(hilo1, NULL);
-	pthread_join(hilo2, NULL);
-	printf("Hilos finalizados\n");
-	return (0);
-} */

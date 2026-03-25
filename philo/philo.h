@@ -6,7 +6,7 @@
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 11:48:33 by blas              #+#    #+#             */
-/*   Updated: 2026/03/23 13:55:11 by blas             ###   ########.fr       */
+/*   Updated: 2026/03/25 12:35:16 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <pthread.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <sys/time.h>
 
 
 //RESTRICT
@@ -48,32 +49,27 @@ typedef struct s_table
 
 typedef struct s_data
 {
-	int		number_philos;
-	int		time_to_die;
-	int		time_to_eat;
-	int		time_to_sleep;
-	int		must_eat;
-	t_table	tab;
-	t_philo	*philos;
+	long long		start_time;
+	int				number_philos;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				must_eat;
+	t_table			tab;
+	t_philo			*philos;
 }	t_data;
 
 int		ft_strlen(char *str);
 void	ft_print_error(char *str);
 
-////Development
-
 //Turnos de comer, pensar, dormir
-
-
-// Get_forks
-
-
-
-// Pattern philo -> comer -> dormir -> pensar
+void	*routine(void *arg);
+void	get_forks(t_philo *ph);
+int		unlock_forks(t_philo *ph);
 
 
 //Check dead
-
+int		check_dead(t_philo *ph);
 
 // Save data params main
 void	get_data(t_data *dt, char **args, int argn);
@@ -85,6 +81,10 @@ int		ft_atoi(char *args);
 
 
 // Tiempo limite de notificación y momento de muerte
+
+//frees
+
+void	free_all(t_data *dt);
 
 
 //BONUS
