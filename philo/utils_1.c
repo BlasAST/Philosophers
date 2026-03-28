@@ -6,7 +6,7 @@
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 17:09:12 by blas              #+#    #+#             */
-/*   Updated: 2026/03/22 17:09:21 by blas             ###   ########.fr       */
+/*   Updated: 2026/03/25 18:57:18 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ void	ft_print_error(char *str)
 
 int	ft_atoi(char *args)
 {
-	int	sign;
-	int	number;
+	int		sign;
+	int		number;
 
 	sign = 1;
 	number = 0;
-	while (*args == ' ')
+	while ((*args >= 9 && *args <= 13) || *args == ' ')
 		args++;
 	if (*args == '-' || *args == '+')
 	{

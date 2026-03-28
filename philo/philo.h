@@ -6,7 +6,7 @@
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 11:48:33 by blas              #+#    #+#             */
-/*   Updated: 2026/03/25 12:35:16 by blas             ###   ########.fr       */
+/*   Updated: 2026/03/28 21:26:44 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 /*
 	- Global vars
 */
+
+typedef struct s_data	t_data;
+
 typedef struct s_philo
 {
 	int						id;
@@ -66,10 +69,16 @@ void	ft_print_error(char *str);
 void	*routine(void *arg);
 void	get_forks(t_philo *ph);
 int		unlock_forks(t_philo *ph);
+void	philo_eat(t_philo *ph);
+void	smart_sleep(long long time_to_wait, t_data *dt);
 
 
-//Check dead
-int		check_dead(t_philo *ph);
+// Get timers
+long long	get_time(void);
+
+//Checkers
+int		check_dead(t_data *dt);
+int	check_all_eaters(t_data *dt);
 
 // Save data params main
 void	get_data(t_data *dt, char **args, int argn);
@@ -78,10 +87,11 @@ int		ft_atoi(char *args);
 
 
 // Notify changes philos - correctos y en orden
+void	print_with_time(char *str, t_philo *ph);
 
 
 // Tiempo limite de notificación y momento de muerte
-
+void	monitor(t_data *dt);
 //frees
 
 void	free_all(t_data *dt);

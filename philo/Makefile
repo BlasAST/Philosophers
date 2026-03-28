@@ -8,7 +8,10 @@ SRC = main.c \
 	monitoring.c \
 	frees.c \
 	checkers.c \
-	forks.c
+	forks.c \
+	prints.c \
+	timers.c \
+	philo.c
 
 OBJ_SRC = $(SRC:.c=.o)
 

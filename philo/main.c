@@ -6,7 +6,7 @@
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 11:46:28 by blas              #+#    #+#             */
-/*   Updated: 2026/03/25 11:43:25 by blas             ###   ########.fr       */
+/*   Updated: 2026/03/28 21:16:27 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@ void	*routine(void *arg)
 	t_philo	*ph;
 
 	ph = (t_philo *) arg;
-	while (1)
+	if (ph->id % 2 == 0)
+		usleep(15000);
+	while (!check_dead(ph->data))
 	{
-		if (check_dead(ph->data->tab.someone_dead))
-			break;
-		
-		/*
-		Pensar
-		Coger tenedor left
-		Coger tenedor right
-		Comer
-		Soltar tenedores
-		Dormir
-		*/
+		print_with_time("is thinking", ph);
+		philo_eat(ph);
+		if (ph->data->must_eat != -1 && ph->meals_eaten >= ph->data->must_eat)
+			break ;
+		print_with_time("is sleeping", ph);
+		smart_sleep(ph->data->time_to_sleep, ph->data);
+		print_with_time("is thinking", ph);
+		if (ph->data->number_philos % 2 != 0)
+			usleep(500);
 	}
 	return (NULL);
 }
@@ -41,7 +41,7 @@ void	await_pthreads(t_data *dt)
 	i = 0;
 	while (i < dt->number_philos)
 	{
-		pthread_detach(dt->philos[i].thread);
+		pthread_join(dt->philos[i].thread, NULL);
 		i++;
 	}
 }
@@ -57,6 +57,7 @@ int	main(int argn, char **args)
 		return (1);
 	}
 	get_data(&dt, args + 1, argn);
+	monitor(&dt);
 	await_pthreads(&dt);
 	free_all(&dt);
 	return (0);
