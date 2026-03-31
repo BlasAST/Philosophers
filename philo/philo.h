@@ -6,7 +6,7 @@
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 11:48:33 by blas              #+#    #+#             */
-/*   Updated: 2026/03/28 21:26:44 by blas             ###   ########.fr       */
+/*   Updated: 2026/03/30 17:14:10 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	ft_print_error(char *str);
 void	*routine(void *arg);
 void	get_forks(t_philo *ph);
 int		unlock_forks(t_philo *ph);
-void	philo_eat(t_philo *ph);
+int	philo_eat(t_philo *ph);
 void	smart_sleep(long long time_to_wait, t_data *dt);
 
 

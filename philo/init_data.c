@@ -6,7 +6,7 @@
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 18:54:38 by blas              #+#    #+#             */
-/*   Updated: 2026/03/28 21:30:07 by blas             ###   ########.fr       */
+/*   Updated: 2026/03/31 02:04:25 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,7 @@ void	init_p_and_m(t_data *dt)
 
 void	get_data(t_data *dt, char **args, int argn)
 {
-	if (ft_atoi(args[0]) > 1)
-		dt->number_philos = ft_atoi(args[0]);
-	else
-		dt->number_philos = ft_atoi(args[0]); // Aqui debe de ir un printone
+	dt->number_philos = ft_atoi(args[0]);
 	dt->time_to_die = ft_atoi(args[1]);
 	dt->time_to_eat = ft_atoi(args[2]);
 	dt->time_to_sleep = ft_atoi(args[3]);
