@@ -6,16 +6,28 @@
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 11:46:28 by blas              #+#    #+#             */
-/*   Updated: 2026/03/31 23:29:40 by blas             ###   ########.fr       */
+/*   Updated: 2026/04/01 21:35:01 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+void	breakmind_switch(long long breakmind, t_philo *ph)
+{
+	if (breakmind < 0)
+		breakmind = 0;
+	if (ph->data->number_philos % 2 != 0)
+		breakmind += (ph->data->time_to_eat / 2);
+	if (breakmind > 0)
+		smart_sleep(breakmind + 2, ph->data);
+	else
+		usleep(500);
+}
+
 void	*routine(void *arg)
 {
-	t_philo	*ph;
-	long long breakmind;
+	t_philo		*ph;
+	long long	breakmind;
 
 	ph = (t_philo *) arg;
 	if (ph->id % 2 == 0)
@@ -29,24 +41,8 @@ void	*routine(void *arg)
 		print_with_time("is sleeping", ph);
 		smart_sleep(ph->data->time_to_sleep, ph->data);
 		print_with_time("is thinking", ph);
-		// if (ph->data->number_philos % 2 != 0)
-		// {
-		// 	breakmind = (ph->data->time_to_eat * 2) - ph->data->time_to_sleep;
-		// 	if (breakmind < 0)
-		// 		breakmind = 0;
-		// 	smart_sleep((breakmind * 4) / 10, ph->data);
-		// }
-		// else
-		// 	usleep(500);
 		breakmind = ph->data->time_to_eat - ph->data->time_to_sleep;
-		if (breakmind < 0)
-			breakmind = 0;
-		if (ph->data->number_philos % 2 != 0)
-			breakmind += (ph->data->time_to_eat / 2);
-		if (breakmind > 0)
-			smart_sleep(breakmind + 2, ph->data);
-		else
-			usleep(500);
+		breakmind_switch(breakmind, ph);
 	}
 	return (NULL);
 }
@@ -73,7 +69,8 @@ int	main(int argn, char **args)
 [time_to_eat] [time_to_sleep] [n_time_each_philo_must_eat]");
 		return (1);
 	}
-	get_data(&dt, args + 1, argn);
+	if (get_data(&dt, args + 1, argn))
+		return (1);
 	monitor(&dt);
 	await_pthreads(&dt);
 	free_all(&dt);

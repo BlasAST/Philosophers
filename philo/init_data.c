@@ -6,7 +6,7 @@
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 18:54:38 by blas              #+#    #+#             */
-/*   Updated: 2026/03/31 02:04:25 by blas             ###   ########.fr       */
+/*   Updated: 2026/04/01 21:22:52 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,10 @@ void	init_forks(t_philo *philo, int i, t_table *tab)
 	}
 }
 
-void	init_p_and_m(t_data *dt)
+void	init_p(t_data *dt)
 {
 	int	i;
 
-	i = 0;
-	dt->tab.forks = malloc (sizeof(pthread_mutex_t) * (dt->number_philos));
-	dt->philos = malloc (sizeof(t_philo) * (dt->number_philos));
-	if (!dt->tab.forks || !dt->philos)
-	{
-		if (dt->tab.forks)
-			free(dt->tab.forks);
-		if (dt->philos)
-			free(dt->philos);
-		return ;
-	}
-	while (i < dt->number_philos)
-	{
-		pthread_mutex_init(&(dt->tab.forks[i]), NULL);
-		i++;
-	}
-	dt->start_time = get_time();
 	i = 0;
 	while (i < dt->number_philos)
 	{
@@ -58,7 +41,32 @@ void	init_p_and_m(t_data *dt)
 	}
 }
 
-void	get_data(t_data *dt, char **args, int argn)
+int	init_p_and_m(t_data *dt)
+{
+	int	i;
+
+	i = 0;
+	dt->tab.forks = malloc (sizeof(pthread_mutex_t) * (dt->number_philos));
+	dt->philos = malloc (sizeof(t_philo) * (dt->number_philos));
+	if (!dt->tab.forks || !dt->philos)
+	{
+		if (dt->tab.forks)
+			free(dt->tab.forks);
+		if (dt->philos)
+			free(dt->philos);
+		return (1);
+	}
+	while (i < dt->number_philos)
+	{
+		pthread_mutex_init(&(dt->tab.forks[i]), NULL);
+		i++;
+	}
+	dt->start_time = get_time();
+	init_p(dt);
+	return (0);
+}
+
+int	get_data(t_data *dt, char **args, int argn)
 {
 	dt->number_philos = ft_atoi(args[0]);
 	dt->time_to_die = ft_atoi(args[1]);
@@ -71,5 +79,11 @@ void	get_data(t_data *dt, char **args, int argn)
 		dt->must_eat = -1;
 	pthread_mutex_init(&dt->tab.prints, NULL);
 	pthread_mutex_init(&dt->tab.death, NULL);
-	init_p_and_m(dt);
+	if (init_p_and_m(dt))
+	{
+		pthread_mutex_destroy(&dt->tab.prints);
+		pthread_mutex_destroy(&dt->tab.death);
+		return (1);
+	}
+	return (0);
 }
