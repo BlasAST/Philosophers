@@ -6,7 +6,7 @@
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/22 17:09:12 by blas              #+#    #+#             */
-/*   Updated: 2026/03/25 18:57:18 by blas             ###   ########.fr       */
+/*   Updated: 2026/04/08 19:31:48 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,49 @@ int	ft_atoi(char *args)
 		args++;
 	}
 	return (number * sign);
+}
+
+int	ft_numeric(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str || str[0] == '\0')
+		return (1);
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			return (1);
+		i++;
+	}
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	ft_is_overflow(char *str)
+{
+	long	res;
+	int		i;
+
+	res = 0;
+	i = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
+		i++;
+	if (str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		res = res * 10 + (str[i] - '0');
+		if (res > 2147483647)
+			return (1);
+		i++;
+	}
+	return (0);
 }

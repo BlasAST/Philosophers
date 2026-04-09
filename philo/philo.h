@@ -6,7 +6,7 @@
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 11:48:33 by blas              #+#    #+#             */
-/*   Updated: 2026/04/01 21:20:55 by blas             ###   ########.fr       */
+/*   Updated: 2026/04/09 02:02:15 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,10 @@ int			ft_atoi(char *args);
 void		print_with_time(char *str, t_philo *ph);
 void		monitor(t_data *dt);
 void		free_all(t_data *dt);
+int			ft_numeric(char *str);
+int			check_values(char **args, int argn);
+int			ft_is_overflow(char *str);
+int			destroy_mutex_philos(t_data *dt);
+
 
 #endif

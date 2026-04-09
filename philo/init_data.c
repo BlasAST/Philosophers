@@ -6,7 +6,7 @@
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 18:54:38 by blas              #+#    #+#             */
-/*   Updated: 2026/04/01 21:22:52 by blas             ###   ########.fr       */
+/*   Updated: 2026/04/09 02:10:36 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,22 +68,27 @@ int	init_p_and_m(t_data *dt)
 
 int	get_data(t_data *dt, char **args, int argn)
 {
+	if (check_values(args, argn))
+		return (1);
 	dt->number_philos = ft_atoi(args[0]);
 	dt->time_to_die = ft_atoi(args[1]);
 	dt->time_to_eat = ft_atoi(args[2]);
 	dt->time_to_sleep = ft_atoi(args[3]);
 	dt->tab.someone_dead = 0;
-	if (argn == 6 && ft_atoi(args[4]) > 0)
+	if (argn == 6)
+	{
 		dt->must_eat = ft_atoi(args[4]);
+		if (dt->must_eat <= 0)
+			return (1);
+	}
 	else
 		dt->must_eat = -1;
+	if (dt->number_philos <= 0 || dt->time_to_die <= 0
+		|| dt->time_to_eat <= 0 || dt->time_to_sleep <= 0)
+		return (1);
 	pthread_mutex_init(&dt->tab.prints, NULL);
 	pthread_mutex_init(&dt->tab.death, NULL);
 	if (init_p_and_m(dt))
-	{
-		pthread_mutex_destroy(&dt->tab.prints);
-		pthread_mutex_destroy(&dt->tab.death);
-		return (1);
-	}
+		return (destroy_mutex_philos(dt));
 	return (0);
 }

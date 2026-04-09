@@ -6,7 +6,7 @@
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/25 11:07:09 by blas              #+#    #+#             */
-/*   Updated: 2026/04/01 21:27:59 by blas             ###   ########.fr       */
+/*   Updated: 2026/04/08 19:20:15 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,21 @@ int	check_all_eaters(t_data *dt)
 		i++;
 	}
 	return (all_eat);
+}
+
+int	check_values(char **args, int argn)
+{
+	int	i;
+
+	i = 0;
+	while (i < (argn - 1))
+	{
+		if (ft_numeric(args[i]) || ft_is_overflow(args[i]))
+		{
+			printf("Error en los parametros\n");
+			return (1);
+		}
+		i++;
+	}
+	return (0);
 }

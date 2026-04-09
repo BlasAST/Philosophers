@@ -6,11 +6,18 @@
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 13:48:23 by blas              #+#    #+#             */
-/*   Updated: 2026/03/31 17:54:36 by blas             ###   ########.fr       */
+/*   Updated: 2026/04/09 02:02:33 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	destroy_mutex_philos(t_data *dt)
+{
+	pthread_mutex_destroy(&dt->tab.prints);
+	pthread_mutex_destroy(&dt->tab.death);
+	return (1);
+}
 
 int	philo_eat(t_philo *ph)
 {
