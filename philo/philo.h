@@ -6,7 +6,7 @@
 /*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 11:48:33 by blas              #+#    #+#             */
-/*   Updated: 2026/04/09 02:02:15 by blas             ###   ########.fr       */
+/*   Updated: 2026/04/09 14:02:06 by blas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,5 @@ int			ft_numeric(char *str);
 int			check_values(char **args, int argn);
 int			ft_is_overflow(char *str);
 int			destroy_mutex_philos(t_data *dt);
-
 
 #endif
