@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blas <blas@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bsiguenc <bsiguenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 11:46:28 by blas              #+#    #+#             */
-/*   Updated: 2026/04/09 02:44:26 by blas             ###   ########.fr       */
+/*   Updated: 2026/04/11 16:19:58 by bsiguenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ int	main(int argn, char **args)
 	if (argn != 5 && argn != 6)
 	{
 		ft_print_error("Error \n Usage: ./philo [n_philos > 0] [time_to_die >] \
-[time_to_eat > 0] [time_to_sleep > 0] [n_time_each_philo_must_eat > 0 | empty]");
+	[time_to_eat > 0] [time_to_sleep > 0] \
+	[n_time_each_philo_must_eat > 0 | empty]");
 		return (1);
 	}
 	if (get_data(&dt, args + 1, argn))

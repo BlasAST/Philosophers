@@ -1,6 +1,6 @@
 NAME = philo
 CC = cc
-# CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 
 SRC = main.c \
 	utils_1.c \
